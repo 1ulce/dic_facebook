@@ -1,0 +1,23 @@
+<div class="row col-white" id="topics_area">
+  <% @topics.each do |topic| %>
+    <% @comment = topic.comments.build %>
+    <% @comments = topic.comments %>
+    <div class=<%="topic_area_#{topic.id}"%>>
+      <div class= "topic-content">
+        <p><%= topic.content %></p>
+      </div>
+      <div class="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments, topic: topic } %>
+      </div>
+      <div class= "comment_form">
+        <%= render partial: 'comments/form', locals: { comment: @comment, topic: topic } %>
+      </div>
+      <% if current_user.id == topic.user_id %>
+        <div class= "topic-operation">
+          <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
+          <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

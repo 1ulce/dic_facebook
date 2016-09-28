@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
   def index
     @topics = Topic.all
     @topic = Topic.new
+    @user = current_user
   end
 
   def new
@@ -16,10 +17,30 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topics_params)
-    if @topic.save
-      redirect_to topics_path, notice: "ツイートを作成しました！"
-    else
-      redirect_to topics_path
+    @topics = Topic.all
+    # if @topic.save
+    #   redirect_to topics_path, notice: "投稿しました！"
+    # else
+    #   redirect_to topics_path
+    # end
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to topics_path, notice: '投稿しました。' }
+        format.json { render :show, status: :created, location: @comment }
+        format.js { render :index }
+        # コメントが入ったらpushする
+        # unless @comment.topic.user_id == current_user.id
+        #   Pusher.trigger("user_#{@comment.topic.user_id}_channel", 'comment_created', {
+        #     message: 'あなたの作成したブログにコメントが付きました'
+        #   })
+        # end
+        # Pusher.trigger("user_#{@comment.topic.user_id}_channel", 'notification_created', {
+        #   uncreate_count: Notification.where(user_id: @comment.topic.user.id).count
+        # })
+      else
+        format.html { redirect_to topics_path }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
   
