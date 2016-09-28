@@ -74,6 +74,6 @@ end
   gem 'fog'
   gem 'dotenv-rails'
   gem 'unicorn'
-  gem 'rails-assets-fontawesome'
+  gem 'counter_culture'
 #### 1ulce add end #########
 
