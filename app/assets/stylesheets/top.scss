@@ -1,0 +1,61 @@
+html{
+  height: 100%;
+  background-color: #fafafa
+}
+body{
+  background-color: #fafafa
+}
+.top-page .container{
+  margin-top: 20px;
+  .top-row{
+    .dashboard-left{
+      background-image: url('/assets/mobile.png');
+      background-position: 0 0;
+      background-size: 454px 618px;
+      height: 618px;
+      background-repeat: no-repeat;
+    }
+    .dashboard-right{
+      background-color: #fff;
+      border: 1px solid #efefef;
+      border-radius: 1px;
+      margin: 0 0 10px;
+      padding: 10px 0;
+      li {
+        list-style: none;
+      }
+      .btn{
+        margin-left: 20%;
+        width: 60%;
+      }
+      input {
+        margin-bottom: 5px;
+      }
+      .form-control{
+        width: 80%;
+        margin-left: 10%;
+      }
+    }
+    .tw-fb-login-or-sign-up {
+      h2 {
+        font-size: 24px;
+      }
+      .btn-twitter {
+        background-color: #00aced;
+      } 
+      .btn-facebook {
+        background-color: #305097; 
+      }
+      a {
+        color: white;
+        text-decoration: none;
+        button{
+        background-color: #3f729b;
+        margin-left: 20%;
+        width: 60%;
+        margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<div class= "top-page">
+  <div class="contents container">
+    <div class= "row top-row">
+      <div class="col-md-6 col-md-offset-1 col-sm-7">
+          <div class="dashboard dashboard-left">
+          </div>
+      </div>
+      <div class="col-md-4 col-sm-5">
+        <div class="tw-fb-login-or-sign-up dashboard-right">
+          <h2>お気に入りの写真でアッと言わせよう</h2>
+          <a href="/users/auth/twitter"><button class='btn btn-primary btn-block btn-twitter' >Twitterでログイン</button></a>
+          <a href="/users/auth/facebook"><button class='btn btn-primary btn-block btn-facebook' >Facebookでログイン</button></a>
+          <p>--または--</p>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="field">
+              <%= f.label :name %><br />
+              <%= f.text_field :name,　autofocus: true, class: 'form-control', placeholder: "名前" %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, class: 'form-control', autocomplete: "off", placeholder: "パスワード" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off", placeholder: "パスワード（確認）" %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :admin %>
+              <%= f.check_box :admin %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "登録", class: 'btn btn-primary btn-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-5">
+        <div class="user-login dashboard-right">
+          <p>アカウントをお持ちですか？</p>
+          <li><%= link_to 'ログインする', new_user_session_path %></li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

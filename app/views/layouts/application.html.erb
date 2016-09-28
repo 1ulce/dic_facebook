@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DicFacebook</title>
+  <title>Facebook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 </head>
 <body>
-
-<%= yield %>
-
+  <% if notice %>
+    <% if current_page?(root_url) %>
+      <div class= "alert alert-success top-alert" role="alert">
+    <% else %>
+      <div class= "alert alert-success" role="alert">
+    <% end %>
+      <p><%= notice %></p>
+    </div>
+  <% end %>
+  <% if current_page?(root_url) %>
+  <% else %>
+    <%= render 'shared/header' %>
+  <% end%>
+  <%= yield %>
+  <footer>
+    <p>るか by Dive into Code</p>
+  </footer>
 </body>
 </html>

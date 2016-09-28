@@ -1,0 +1,92 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+footer{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  height: 20px;
+  background-color: #3f729b;
+  color: #fff;
+}
+html{
+  text-align: center;
+}
+header {
+  width: 100%;
+  background: #fafafa;
+  height: 46px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  span.lnr{
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  span.header-word{
+    font-size: 12px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  a.btn{
+    vertical-align: middle;
+    padding-right: initial;
+    span.lnr{
+      font-size: 17px;
+    }
+    span.header-word{
+      font-size: 13px;
+    }
+  }
+  nav.navbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: x-large;
+    height: 47px;
+    line-height: 47px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    .navbar-header{
+      margin-left: 20px;
+      float: left;
+    }
+    ul{
+      margin: 0px;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .nav-right{
+    position:fixed;
+    right: 70px;
+  }
+  h1.top-icon{
+    margin: 0;
+    display: block;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    color: #2196f3;
+  }
+}
+header ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
