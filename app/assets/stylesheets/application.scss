@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require fontawesome
  */
 footer{
   position: fixed;
@@ -29,8 +30,7 @@ html{
 header {
   width: 100%;
   background: #fafafa;
-  height: 46px;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  height: 43px;
   span.lnr{
     margin-right: 5px;
     vertical-align: middle;
@@ -57,10 +57,13 @@ header {
     left: 0;
     z-index: 1000;
     font-size: x-large;
-    height: 47px;
-    line-height: 47px;
+    height: 42px;
+    line-height: 42px;
     margin: 0 auto;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    background-color: #3b5998;
+    border-bottom: 1px solid #29487d;
+    border-radius: 0px;
+    min-height: 42px;
     .navbar-header{
       margin-left: 20px;
       float: left;

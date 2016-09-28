@@ -9,6 +9,12 @@ module ApplicationHelper
     end
     image_tag(img_url, alt: user.name)
   end
+  def fa_icon(names, options = {})
+    names = (names.is_a?(Array) ? names : names.split(/\s+/)).map { |n| "fa-#{n}" }
+    classes = %W(fa #{names.join(' ')} #{options.delete(:class)})
+    icon = content_tag(:i, nil, options.merge(class: classes))
+    (block_given? ? yield(icon) : icon).html_safe
+  end
 end
 module ActionView
   module Helpers

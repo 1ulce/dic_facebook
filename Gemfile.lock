@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     CFPropertyList (2.3.3)
     actionmailer (4.2.3)
@@ -349,6 +350,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.3)
       sprockets-rails
+    rails-assets-fontawesome (4.6.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -475,6 +477,7 @@ DEPENDENCIES
   pry-rails
   pusher
   rails (= 4.2.3)
+  rails-assets-fontawesome
   rails_12factor
   rails_admin
   rmagick

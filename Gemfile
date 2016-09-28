@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -73,5 +74,6 @@ end
   gem 'fog'
   gem 'dotenv-rails'
   gem 'unicorn'
+  gem 'rails-assets-fontawesome'
 #### 1ulce add end #########
 
