@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
     @topics = Topic.all
     @topic = Topic.new
     @user = current_user
+    @users = User.all
   end
 
   def new
