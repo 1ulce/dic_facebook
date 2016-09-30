@@ -20,7 +20,9 @@
         <div class= "col-md-7">
           <%= f_u.email %>
         </div>
-        <%= render 'follow_form', user: f_u %>
+          <% unless current_user == f_u %>
+            <%= render 'follow_form', user: f_u %>
+          <% end %>
       </div>
     <% end %>
   </div>
@@ -37,7 +39,9 @@
         <div class= "col-md-7">
           <%= f_u.email %>
         </div>
-        <%= render 'follow_form', user: f_u %>
+          <% unless current_user == f_u %>
+            <%= render 'follow_form', user: f_u %>
+          <% end %>
       </div>
     <% end %>
   </div>

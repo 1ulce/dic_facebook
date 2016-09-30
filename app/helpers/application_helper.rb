@@ -1,13 +1,13 @@
 module ApplicationHelper
   def profile_img(user)
-    return image_tag(user.picture, alt: user.name) if user.picture?
+    return image_tag(user.picture, alt: user.name, style: "height: 30px;") if user.picture?
 
     unless user.provider.blank?
       img_url = user.image_url
     else
       img_url = 'no_image.png'
     end
-    image_tag(img_url, alt: user.name)
+    image_tag(img_url, alt: user.name, style: "height: 30px;")
   end
   def fa_icon(names, options = {})
     names = (names.is_a?(Array) ? names : names.split(/\s+/)).map { |n| "fa-#{n}" }
