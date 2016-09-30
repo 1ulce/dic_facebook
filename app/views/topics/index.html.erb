@@ -1,9 +1,26 @@
 <div class="wrapper top-wrapper">
   <div class= "row">
     <div class= "col-xs-2 col-gray user-info">
-      <%= profile_img(@user) %>
-      <%= @user.name %>
-      <button>編集</button>
+      <div class= "row">
+        <%= profile_img(@user) %>
+        <%= @user.name %>
+      </div>
+      <div class= "row">
+        <div class= "col-xs-6">
+          フォロー数 <%= @user.followed_users.count %>
+        </div>
+        <div class= "col-xs-6">
+          フォロワー数 <%= @user.followers.count %>
+        </div>
+      </div>
+      <div class= "row">
+        <span>メールアドレス</span>
+        <br>
+        <span><%= @user.email %></span>
+      </div>
+      <%= link_to edit_user_registration_path do %>
+        <button class="btn default-btn">編集</button>
+      <% end %>
     </div>
     <div class= "col-xs-4">
       <div class= "index-form row">
