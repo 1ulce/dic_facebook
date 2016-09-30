@@ -11,6 +11,33 @@
     .col-white {
       background-color: #fff;
       padding: 5px;
+      margin-bottom: 20px;
     }
   }
-} 
+}
+.top-wrapper{
+  .conversation-area{
+    display: none;
+    position: fixed;
+    width: 31.6%;
+    bottom: 0px;
+    height: 88.5%;
+
+    .conversation {
+      position: fixed;
+      width: 30.5%;
+      bottom: 120px;
+    }
+    form{
+      position: fixed;
+      width: 30.5%;
+      bottom: 20px;
+    }
+
+
+    .conversation .conversation-messages{
+      max-height: 450px;
+      overflow: auto;
+    }
+  }
+}

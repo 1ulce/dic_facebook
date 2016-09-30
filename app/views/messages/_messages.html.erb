@@ -1,0 +1,21 @@
+<div class="ui segment">
+  <% #if @over_ten %>
+    <% #=link_to '以前のメッセージ', '?m=all' %>
+  <% #end %>
+  <% @messages.each do |message| %>
+    <% if message.content %>
+      <% user = User.find(message.user_id) %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <%= message.content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

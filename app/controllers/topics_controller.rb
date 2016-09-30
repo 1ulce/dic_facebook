@@ -2,10 +2,11 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update, :destroy]
   
   def index
-    @topics = Topic.all
+    @topics = Topic.all.order(created_at: :desc)
     @topic = Topic.new
     @user = current_user
     @users = User.all
+    @conversations = @user.conversations
   end
 
   def new
@@ -18,7 +19,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topics_params)
-    @topics = Topic.all
+    @topics = Topic.all.order(created_at: :desc)
     # if @topic.save
     #   redirect_to topics_path, notice: "投稿しました！"
     # else

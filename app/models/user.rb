@@ -7,10 +7,13 @@ class User < ActiveRecord::Base
 
   has_many :topics, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :user_conversations, dependent: :destroy
+  has_many :conversations, ->{order("id ASC")}, through: :user_conversations, dependent: :destroy
   validates :name, presence: true
   validates :email, presence: true
 

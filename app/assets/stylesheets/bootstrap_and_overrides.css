@@ -6,7 +6,7 @@
   =require twitter-bootstrap-static/fontawesome
   */
 .alert{
-  margin-top: 49px;
+  margin-top: 42px;
   margin-bottom: 0px;
 }
 .alert.top-alert{

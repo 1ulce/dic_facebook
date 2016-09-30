@@ -1,46 +1,52 @@
-<div class="wrapper">
+<div class="wrapper top-wrapper">
   <div class= "row">
-    <div class= "col-xs-3 col-gray user-info">
+    <div class= "col-xs-2 col-gray user-info">
       <%= @user.picture %>
       <%= @user.name %>
       <button>編集</button>
     </div>
-    <div class= "col-xs-3">
-      <div class= "index-form row col-white">
-        <%= form_for(@topic, url: topics_path, remote: true) do |f| %>
-          <% if @topic.errors.any? %>
-            <% @topic.errors.full_messages.each do |msg| %>
-              <div class= "alert alert-warning" role="alert">
-              <p><%= msg %></p>
-            </div>
+    <div class= "col-xs-4">
+      <div class= "index-form row">
+        <div class= "col-xs-11">
+          <div class= "col-white row">
+            <%= form_for(@topic, url: topics_path, remote: true) do |f| %>
+              <% if @topic.errors.any? %>
+                <% @topic.errors.full_messages.each do |msg| %>
+                  <div class= "alert alert-warning" role="alert">
+                    <p><%= msg %></p>
+                  </div>
+                  <% end %>
+                <% end %>
+              <%= f.text_area :content,type: :text,  :placeholder => '今何してる？', class: 'form-control' %>
+              <br>
+              <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
             <% end %>
-          <% end %>
-          <%= f.text_area :content,type: :text,  :placeholder => '今何してる？', class: 'form-control' %>
-          <br>
-          <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
-        <% end %>
+          </div>
+          <div id="topics_area">
+            <%= render partial: 'topics/show', locals: { topics: @topics } %>
+          </div>
+        </div>
+        <div class= "col-xs-1 col-gray">
+        </div>
       </div>
-      <%= render partial: 'topics/show', locals: { topics: @topics } %>
     </div>
-    <div class= "col-xs-3">
-    </div>
-    <div class= "col-xs-3 col-gray">
-      <ul class= "user-list">
-        <% @users.each do |user| %>
-          <li class= <%= "user-#{user.id}" %>>
-            <div class="item">
-              <a href = "/users/<%= user.id %>">
-                <%= profile_img(user) %>
-                <%= user.name %>
-              </a>
-              <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
-                <i class="fa fa-comments-o" aria-hidden="true"></i>
-              <% end %>
+    <div class= "col-xs-4">
+      <div class= "row">
+        <div class= "col-xs-11">
+          <div class= "row col-white">
+            <%= render partial: 'conversations/index', locals: { conversations: @conversations } %>
+          </div>
+          <div class= "row">
+            <div class= "conversation-area  col-white">
             </div>
-            <%= render partial: 'users/follow_form', locals: { user: user } if signed_in?   %>
-          </li>
-        <% end %>
-      </ul>
+          </div>
+        </div>
+        <div class= "col-xs-1 col-gray">
+        </div>
+      </div>
+    </div>
+    <div class= "col-xs-2 col-gray">
+      <%= render partial: 'users/index', locals: { users: @users } %>
     </div>
   </div>
 </div>

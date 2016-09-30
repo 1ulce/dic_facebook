@@ -1,0 +1,18 @@
+<div class="conversations-or-messages">
+  <table class="table table-hover">
+    <thead>
+      <h2>メッセージ一覧</h2>
+    </thead>
+    <% @conversations.each do |conversation| %>
+      <tbody>
+        <td>
+          <% if current_page?(controller: 'topics', action: 'index') %>
+            <%= link_to conversation.title, conversation_messages_path(conversation), :remote => true %>
+          <% else %>
+            <%= link_to conversation.title, conversation_messages_path(conversation) %>
+          <% end %>
+        </td>
+      </tbody>
+    <% end %>
+  </table>
+</div>

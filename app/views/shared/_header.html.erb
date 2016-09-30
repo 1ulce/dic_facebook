@@ -6,9 +6,11 @@
       </div>
       <div class="nav-right">
         <ul class="nav navbar-nav">
-          <li class= "user">
-            <%= link_to 'マイページ', edit_user_registration_path %>
-          </li>
+          <% if user_signed_in? %>
+            <li class= "user">
+              <%= link_to 'マイページ', user_path(current_user) %>
+            </li>
+          <% end %>
           <li class= "home">
             <%= link_to 'ホーム', root_path %>
           </li>

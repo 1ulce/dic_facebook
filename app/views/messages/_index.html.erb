@@ -1,0 +1,21 @@
+<p class="conversation-back">←</p>
+<div class="conversation">
+  <div class= conversation-users>
+    <% @users.each do |user| %>
+      <%= user.name %>
+    <% end %>
+  </div>
+  <div class= "conversation-messages">
+    <%= render partial: 'messages/messages', locals: { messages: @messages } %>
+  </div>
+</div>
+
+<%= form_for [@conversation, @message], html: {class: "ui reply form"}, remote: true do |f| %>
+  <div class="field">
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+    <%= f.submit "メッセージを送る" %>
+  </div>
+<% end %>

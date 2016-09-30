@@ -14,7 +14,10 @@
     <% else %>
       <div class= "alert alert-success" role="alert">
     <% end %>
-      <p><%= notice %></p>
+      <p>
+        <%= notice %>
+        <button class= "close">✕</button>
+      </p>
     </div>
   <% end %>
   <% if current_page?(root_url) %>
