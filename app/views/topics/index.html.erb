@@ -36,6 +36,7 @@
                 <% end %>
               <%= f.text_area :content,type: :text,  :placeholder => '今何してる？', class: 'form-control' %>
               <br>
+              <%= f.hidden_field :user_id %>
               <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
             <% end %>
           </div>

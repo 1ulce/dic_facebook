@@ -2,10 +2,10 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update, :destroy]
   
   def index
-    @topics = Topic.all.order(created_at: :desc)
-    @topic = Topic.new
     @user = current_user
     @users = User.all
+    @topics = Topic.all.order(created_at: :desc)
+    @topic = Topic.new(user_id: @user.id)
     @conversations = @user.conversations
   end
 
@@ -20,11 +20,6 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topics_params)
     @topics = Topic.all.order(created_at: :desc)
-    # if @topic.save
-    #   redirect_to topics_path, notice: "投稿しました！"
-    # else
-    #   redirect_to topics_path
-    # end
     respond_to do |format|
       if @topic.save
         format.html { redirect_to topics_path, notice: '投稿しました。' }
@@ -67,7 +62,7 @@ class TopicsController < ApplicationController
   end
   private
     def topics_params
-      params.require(:topic).permit(:content)
+      params.require(:topic).permit(:content, :user_id)
     end
     def set_topic
       @topic = Topic.find(params[:id])
