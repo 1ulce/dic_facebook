@@ -7,11 +7,7 @@
             <%= profile_img(user) %>
             <%= user.name %>
           </a>
-          <% if current_page?(controller: 'topics', action: 'index') %>
-            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
-              <i class="fa fa-comments-o" aria-hidden="true"></i>
-            <% end %>
-          <% else %>
+          <% unless current_page?(controller: 'topics', action: 'index') %>
             <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
               <i class="fa fa-comments-o" aria-hidden="true"></i>
             <% end %>

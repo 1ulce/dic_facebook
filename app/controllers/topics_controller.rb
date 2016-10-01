@@ -3,7 +3,9 @@ class TopicsController < ApplicationController
   
   def index
     @user = current_user
+    @friend = @user.friend
     @users = User.all
+    @self_friends_id = [@user.id].push(@user.friend.map {|u| u.id}).flatten
     @topics = Topic.all.order(created_at: :desc)
     @topic = Topic.new(user_id: @user.id)
     @conversations = @user.conversations
@@ -20,6 +22,8 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topics_params)
     @topics = Topic.all.order(created_at: :desc)
+    @user = current_user
+    @self_friends_id = [@user.id].push(@user.friend.map {|u| u.id}).flatten
     respond_to do |format|
       if @topic.save
         format.html { redirect_to topics_path, notice: '投稿しました。' }
@@ -46,7 +50,7 @@ class TopicsController < ApplicationController
   
   def update
     if @topic.update(topics_params)
-      redirect_to topics_path, notice: "ツイートを編集しました！"
+      redirect_to topics_path, notice: "投稿を編集しました！"
     else
       render action: 'edit'
     end
@@ -54,7 +58,7 @@ class TopicsController < ApplicationController
   
   def destroy
     @topic.destroy
-    redirect_to topics_path, notice: "ツイートを削除しました！"
+    redirect_to topics_path, notice: "投稿を削除しました！"
   end
   def confirm
     @topic = Topic.new(topics_params)

@@ -7,6 +7,9 @@ class ConversationsController < ApplicationController
   def create
     @user = User.find(params["sender_id"])
     @recipient_user = User.find(params["recipient_id"])
+    unless @user.friend.index(@recipient_user)
+      redirect_to root_path
+    end
     groups_user_ids = []
     user_ids = [@user.id, @recipient_user.id].sort!
 

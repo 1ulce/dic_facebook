@@ -1,6 +1,7 @@
 <div class="wrapper top-wrapper">
   <div class= "row">
     <div class= "col-xs-2 col-gray user-info">
+      <h3>自分</h3>
       <div class= "row">
         <%= profile_img(@user) %>
         <%= @user.name %>
@@ -21,6 +22,31 @@
       <%= link_to edit_user_registration_path do %>
         <button class="btn default-btn">編集</button>
       <% end %>
+      <div class= "row">
+        <h3>友達</h3>
+        <ul>
+          <% @friend.each do |user| %>
+            <li class= <%= "user-#{user.id}" %>>
+              <div class="item">
+                <a href = "/users/<%= user.id %>">
+                  <%= profile_img(user) %>
+                  <%= user.name %>
+                </a>
+                <% if current_page?(controller: 'topics', action: 'index') %>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
+                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
+                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </div>
+              <%= render partial: 'users/follow_form', locals: { user: user } if signed_in?   %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class= "col-xs-4">
       <div class= "index-form row">
@@ -64,6 +90,7 @@
       </div>
     </div>
     <div class= "col-xs-2 col-gray">
+      <h3>ユーザー</h3>
       <%= render partial: 'users/index', locals: { users: @users } %>
     </div>
   </div>
