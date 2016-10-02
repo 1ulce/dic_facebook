@@ -8,7 +8,12 @@
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
             <li class= "user">
-              <%= link_to 'マイページ', user_path(current_user) %>
+              <%= link_to user_path(current_user) do %>
+                <p>
+                  <%= profile_img(current_user) %>
+                  <%= current_user.name %>
+                </p>
+              <% end %>
             </li>
           <% end %>
           <li class= "home">

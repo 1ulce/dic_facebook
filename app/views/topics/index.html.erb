@@ -1,20 +1,20 @@
 <div class="wrapper top-wrapper">
-  <div class= "row">
-    <div class= "col-xs-2 col-gray user-info">
+  <div class= "row-fluid">
+    <div class= "col-xs-2 col-gray col-fluid user-info">
       <h3>自分</h3>
-      <div class= "row">
+      <div class= "row-fluid">
         <%= profile_img(@user) %>
         <%= @user.name %>
       </div>
-      <div class= "row">
-        <div class= "col-xs-6">
+      <div class= "row-fluid">
+        <div class= "col-xs-6 no-padding">
           フォロー数 <%= @user.followed_users.count %>
         </div>
-        <div class= "col-xs-6">
+        <div class= "col-xs-6 no-padding">
           フォロワー数 <%= @user.followers.count %>
         </div>
       </div>
-      <div class= "row">
+      <div class= "row-fluid">
         <span>メールアドレス</span>
         <br>
         <span><%= @user.email %></span>
@@ -22,27 +22,51 @@
       <%= link_to edit_user_registration_path do %>
         <button class="btn default-btn">編集</button>
       <% end %>
-      <div class= "row">
+      <div class= "row-fluid">
         <h3>友達</h3>
-        <ul>
+        <ul class="user-list">
           <% @friend.each do |user| %>
-            <li class= <%= "user-#{user.id}" %>>
+            <li class= "<%= "user-#{user.id}" %>">
               <div class="item">
-                <a href = "/users/<%= user.id %>">
-                  <%= profile_img(user) %>
-                  <%= user.name %>
+                <a class="col-xs-12" href = "/users/<%= user.id %>">
+                  <div class="row">
+                    <div class= "col-xs-3 no-padding">
+                      <%= profile_img(user) %>
+                    </div>
+                    <div class= "col-xs-9">
+                      <%= user.name %>
+                    </div>
+                  </div>
                 </a>
-                <% if current_page?(controller: 'topics', action: 'index') %>
-                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
-                    <i class="fa fa-comments-o" aria-hidden="true"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
-                    <i class="fa fa-comments-o" aria-hidden="true"></i>
-                  <% end %>
-                <% end %>
+                <div class= "col-xs-12">
+                  <div class="row">
+                    <div class= "col-xs-6 no-padding">
+                      <div id="follow_form_<%= user.id %>">
+                        <% unless current_user.following?(user) %>
+                          <%= form_for(current_user.relationships.build(followed_id: user.id), remote: true) do |f| %>
+                            <%= f.hidden_field :followed_id %>
+                            <%= f.submit "フォロー", class: "btn follow-btn" %>
+                          <% end %>
+                        <% else %>
+                          <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }, remote: true) do |f| %>
+                            <%= f.submit "解除", class: "btn follow-btn" %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 no-padding">
+                      <% if current_page?(controller: 'topics', action: 'index') %>
+                        <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
+                          <i class="fa fa-comments-o btn btn-success" aria-hidden="true"></i>
+                        <% end %>
+                      <% else %>
+                        <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
+                          <i class="fa fa-comments-o btn btn-success" aria-hidden="true"></i>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-              <%= render partial: 'users/follow_form', locals: { user: user } if signed_in?   %>
             </li>
           <% end %>
         </ul>

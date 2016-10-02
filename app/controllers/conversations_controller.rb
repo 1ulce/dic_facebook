@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @conversations = current_user.conversations
   end
@@ -28,9 +29,12 @@ class ConversationsController < ApplicationController
       end
       @conversation
     end
+    @users = @conversation.users
+    @messages = @conversation.messages
+    @message = @conversation.messages.build
     respond_to do |format|
       format.html { redirect_to conversation_messages_path(@conversation) }
-      format.js { redirect_to root_path }
+      format.js { render :file => "/messages/index.js.erb" }
     end
   end
 
