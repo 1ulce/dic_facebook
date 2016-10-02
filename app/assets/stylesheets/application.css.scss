@@ -36,34 +36,14 @@ html{
 header {
   width: 100%;
   background: #fafafa;
-  span.lnr{
-    margin-right: 5px;
-    vertical-align: middle;
-  }
-  span.header-word{
-    font-size: 12px;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  a.btn{
-    vertical-align: middle;
-    padding-right: initial;
-    span.lnr{
-      font-size: 17px;
-    }
-    span.header-word{
-      font-size: 13px;
-    }
-  }
   nav.navbar{
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 1000;
-    font-size: x-large;
+    font-size: small;
     height: 42px;
-    line-height: 42px;
     margin: 0 auto;
     background-color: #3b5998;
     border-bottom: 1px solid #29487d;
@@ -72,18 +52,41 @@ header {
     border-right: none;
     border-radius: 0px;
     min-height: 42px;
-    .container-fluid {
+    color: #fafafa;
+    .container-fluid{
+      height: 42px;
+    }
+    .navbar-nav{
+      li {
+        margin-right: 10px;
+      }
+      li a {
+        padding: 0px;
+        color: #fafafa;
+      }
+      li.user p {
+        img {
+          height: 20px !important;
+        }
+        margin-bottom: 0px;
+      }
     }
     .navbar-header{
-      float: left;
       a i{
         color: white;
         font-size: 28px;
-        vertical-align: text-bottom;
+        margin-top: 7px;
       }
     }
     ul{
       margin: 0px;
+    }
+    ul.dropdown-menu li{
+      margin: 0px;
+      a{
+        color: #333;
+        text-align: center;
+      }
     }
     a {
       text-decoration: none;
@@ -92,6 +95,10 @@ header {
   .nav-right{
     position:fixed;
     right: 70px;
+    top: 10px;
+  }
+  .collapse.navbar-collapse {
+    margin-top: 10px;
   }
 }
 header ul:after {

@@ -8,10 +8,18 @@
       </div>
       <div class= "row-fluid">
         <div class= "col-xs-6 no-padding">
-          フォロー数 <%= @user.followed_users.count %>
+          フォロー
         </div>
         <div class= "col-xs-6 no-padding">
-          フォロワー数 <%= @user.followers.count %>
+          フォロワー
+        </div>
+      </div>
+      <div class= "row-fluid">
+        <div class= "col-xs-6 no-padding">
+          <%= @user.followed_users.count %>
+        </div>
+        <div class= "col-xs-6 no-padding">
+          <%= @user.followers.count %>
         </div>
       </div>
       <div class= "row-fluid">

@@ -1,9 +1,13 @@
-<p class="conversation-back">←</p>
 <div class="conversation">
-  <div class= conversation-users>
-    <% @users.each do |user| %>
-      <%= user.name %>
-    <% end %>
+  <div class="row">
+    <div class="back col-xs-1 no-padding">
+      <p class="conversation-back">←</p>
+    </div>
+    <div class= "conversation-users col-xs-11 no-padding">
+      <% @users.each do |user| %>
+        <%= user.name %>
+      <% end %>
+    </div>
   </div>
   <div class= "conversation-messages">
     <%= render partial: 'messages/messages', locals: { messages: @messages } %>
@@ -16,6 +20,6 @@
   </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div>
-    <%= f.submit "メッセージを送る" %>
+    <%= f.submit "メッセージを送る", class: "btn" %>
   </div>
 <% end %>

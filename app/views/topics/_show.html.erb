@@ -1,13 +1,31 @@
-<div class="row col-white">
+<div class="row">
   <% @topics.each do |topic| %>
     <% if @self_friends_id.index(topic.user.id) %>
       <% @comment = topic.comments.build %>
       <% @comments = topic.comments %>
-      <div class=<%="topic_area_#{topic.id}"%>>
-        <div class="topic_header">
-          <%= topic.user.name %>
+      <div class= "topic <%="topic_area_#{topic.id}"%>  col-white">
+        <div class="topic_header row">
+          <% user = topic.user %>
+          <a class="col-xs-6" href = "/users/<%= user.id %>">
+            <div class="row">
+              <div class= "col-xs-4 no-padding">
+                <%= profile_img(user) %>
+              </div>
+              <div class= "col-xs-8 no-padding">
+                <p>
+                  <%= user.name %>
+                </p>
+              </div>
+            </div>
+          </a>
+          <% if current_user.id == topic.user.id %>
+            <p class="right">
+              <%= link_to "", edit_topic_path(topic.id), class: 'fa fa-pencil-square-o fa-lg' %>
+              <%= link_to '', topic_path(topic.id), class: "fa fa-trash-o fa-lg", method: :delete, remote: true, data: { confirm: '本当に削除していいですか？' } %>
+            </p>
+          <% end %>
         </div>
-        <div class= "topic-content">
+        <div class= "topic-content row-fluid">
           <p><%= topic.content %></p>
         </div>
         <div class="comments_area">
@@ -16,12 +34,6 @@
         <div class= "comment_form">
           <%= render partial: 'comments/form', locals: { comment: @comment, topic: topic } %>
         </div>
-        <% if current_user.id == topic.user_id %>
-          <div class= "topic-operation">
-            <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
-            <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
-          </div>
-        <% end %>
       </div>
     <% end %>
   <% end %>

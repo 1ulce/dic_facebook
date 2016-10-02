@@ -19,9 +19,43 @@ li.user-show{
   }
   .user-info {
     padding-left: 0px;
+    .row-fluid {
+      margin-bottom: 10px;
+    }
   }
 }
 .top-wrapper{
+  #topics_area{
+    .topic {
+      margin-bottom: 10px;
+    }
+    .topic_header{
+      border-bottom: 1px dashed black;
+      margin: 0px;
+      p {
+        text-align: left;
+        line-height: 26px;
+        margin-bottom: 0px;
+      }
+    }
+    .comment_header {
+      p {
+        text-align: left;
+        line-height: 26px;
+        margin-bottom: 0px;
+      }
+    }
+    .comment_form {
+      .field {
+        float: left;
+      }
+      div.actions:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    }
+  }
   .conversation-area{
     display: none;
     position: fixed;
@@ -32,7 +66,14 @@ li.user-show{
     .conversation {
       position: fixed;
       width: 30.5%;
-      bottom: 120px;
+      bottom: 125px;
+      .row {
+        margin: 0px;
+        border-bottom: 1px dashed gray;
+        .back {
+          cursor: pointer;
+        }
+      }
     }
     form{
       position: fixed;
@@ -44,6 +85,24 @@ li.user-show{
     .conversation .conversation-messages{
       max-height: 450px;
       overflow: auto;
+    }
+    .conversation-messages .item {
+      .content {
+        .message-header {
+          text-align: left;
+        }
+        .list .item p {
+          text-align: left;
+        }
+      }
+      .content.self-message {
+        .message-header {
+          text-align: right;
+        }
+        .list .item p {
+          text-align: right;
+        }
+      }
     }
   }
 }

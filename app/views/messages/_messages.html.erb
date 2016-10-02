@@ -6,12 +6,17 @@
     <% if message.content %>
       <% user = User.find(message.user_id) %>
       <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+        <div class="content <%= "self-message" if user == current_user %>">
+          <div class="header">
+              <div class="message-header">
+              <strong><%= user.name %></strong> <%= message.message_time %>
+            </div>
+          </div>
           <div class="list">
             <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.content %>
+              <p>
+                <%= message.content %>
+              </p>
             </div>
           </div>
         </div>
