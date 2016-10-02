@@ -24,52 +24,10 @@
       <% end %>
       <div class= "row-fluid">
         <h3>友達</h3>
-        <ul class="user-list">
-          <% @friend.each do |user| %>
-            <li class= "<%= "user-#{user.id}" %>">
-              <div class="item">
-                <a class="col-xs-12" href = "/users/<%= user.id %>">
-                  <div class="row">
-                    <div class= "col-xs-3 no-padding">
-                      <%= profile_img(user) %>
-                    </div>
-                    <div class= "col-xs-9">
-                      <%= user.name %>
-                    </div>
-                  </div>
-                </a>
-                <div class= "col-xs-12">
-                  <div class="row">
-                    <div class= "col-xs-6 no-padding">
-                      <div id="follow_form_<%= user.id %>">
-                        <% unless current_user.following?(user) %>
-                          <%= form_for(current_user.relationships.build(followed_id: user.id), remote: true) do |f| %>
-                            <%= f.hidden_field :followed_id %>
-                            <%= f.submit "フォロー", class: "btn follow-btn" %>
-                          <% end %>
-                        <% else %>
-                          <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }, remote: true) do |f| %>
-                            <%= f.submit "解除", class: "btn follow-btn" %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="col-xs-6 no-padding">
-                      <% if current_page?(controller: 'topics', action: 'index') %>
-                        <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
-                          <i class="fa fa-comments-o btn btn-success" aria-hidden="true"></i>
-                        <% end %>
-                      <% else %>
-                        <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
-                          <i class="fa fa-comments-o btn btn-success" aria-hidden="true"></i>
-                        <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+        <% @temp = @users %>
+        <% @users = @friend%>
+        <%= render partial: 'users/index' %>
+        <% @users = @temp%>
       </div>
     </div>
     <div class= "col-xs-4">

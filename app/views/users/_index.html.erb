@@ -1,19 +1,28 @@
 <ul class= "user-list">
   <% @users.each do |user| %>
     <% unless user == current_user %>
-      <li class= <%= "user-#{user.id}" %>>
+      <li class= "user-show <%= "user-#{user.id}" %>">
         <div class="item">
-          <a href = "/users/<%= user.id %>">
-            <%= profile_img(user) %>
-            <%= user.name %>
+          <a class="col-xs-12" href = "/users/<%= user.id %>">
+            <div class="row">
+              <div class= "col-xs-3 no-padding">
+                <%= profile_img(user) %>
+              </div>
+              <div class= "col-xs-9">
+                <%= user.name %>
+              </div>
+            </div>
           </a>
-          <% unless current_page?(controller: 'topics', action: 'index') %>
-            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' do %>
-              <i class="fa fa-comments-o" aria-hidden="true"></i>
+          <div class= "row no-padding">
+            <% unless @users == current_user.friend %>
+              <%= render partial: 'users/follow_form', locals: { user: user } if signed_in?   %>
+            <% else %>
+              <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', remote: true do %>
+                <i class="fa fa-comments-o btn btn-success" aria-hidden="true">メッセージ</i>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-        <%= render partial: 'users/follow_form', locals: { user: user } if signed_in?   %>
       </li>
     <% end %>
   <% end %>
