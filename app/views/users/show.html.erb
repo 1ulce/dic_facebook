@@ -1,6 +1,6 @@
-<div class="wrapper container">
+<div class="container">
   <div class= "title row">
-    <div class= "col-md-1 col-md-offset-2">
+    <div class= "col-md-1 col-md-offset-2 user-image">
       <%= profile_img(@user) if profile_img(@user) %>
     </div>
     <div class= "col-md-9">
@@ -8,14 +8,16 @@
     </div>
   </div>
   <div class="container-child col-md-6 col-sm-6 col-xs-6 ">
-    <h4>フォロー一覧</h4>
+    <h2>フォロー一覧</h2>
     <% @user.followed_users.each do |f_u| %>
       <div class="row">
         <div class= "col-md-4">
           <%= profile_img(f_u) %>
         </div>
         <div class= "col-md-7">
-          <%= f_u.name %>
+          <%= link_to user_path(f_u) do %>
+            <%= f_u.name %>
+          <% end %>
         </div>
         <div class= "col-md-7">
           <%= f_u.email %>
@@ -27,7 +29,7 @@
     <% end %>
   </div>
   <div class="container-child col-md-6 col-sm-6 col-xs-6 ">
-  <h4>フォロワー一覧</h4>
+    <h2>フォロワー一覧</h2>
     <% @user.followers.each do |f_u| %>
       <div class="row">
         <div class= "col-md-4">

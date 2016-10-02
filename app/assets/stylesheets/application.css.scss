@@ -19,6 +19,9 @@
  .no-padding {
   padding: 0px;
  }
+ .container-fluid {
+  background-color: #e9ebee;
+ }
 footer{
   position: fixed;
   bottom: 0;
@@ -55,6 +58,7 @@ header {
     color: #fafafa;
     .container-fluid{
       height: 42px;
+      background-color: #3b5998;
     }
     .navbar-nav{
       li {
@@ -99,6 +103,15 @@ header {
   }
   .collapse.navbar-collapse {
     margin-top: 10px;
+  }
+  .top-page {
+    height: 70px !important;
+    i {
+      font-size: 57px;
+      position: fixed;
+      left: 30px;
+      top:5px;
+    }
   }
 }
 header ul:after {
